@@ -1,2 +1,0 @@
-class UsaCity < ApplicationRecord
-end
