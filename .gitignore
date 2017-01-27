@@ -42,3 +42,5 @@ bower.json
 .byebug_history
 config/database.yml
 .idea
+/.git
+/public/uploads

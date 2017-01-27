@@ -1,0 +1,32 @@
+<section class="content">
+
+  <h2 class="page-header"><%= @item.name %></h2>
+
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Widget: user widget style 1 -->
+      <div class="box box-widget widget-user-2">
+        <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class="widget-user-header bg-yellow">
+          <div class="widget-user-image">
+            <%= image_tag @item.image.present? ? @item.image_url(:large) : 'http://placehold.it/200x200', class: 'img-circle', alt: "#{@item.name}" %>
+          </div>
+          <!-- /.widget-user-image -->
+          <h3 class="widget-user-username"><%= @item.name %></h3>
+        </div>
+        <div class="box-footer no-padding">
+          <ul class="nav nav-stacked">
+            <li><a><p><%= @item.description %></p></a></li>
+            <li><a>Quantity <span class="pull-right badge bg-aqua"><%= @item.quantity %></span></a></li>
+            <li><a>Used <span class="pull-right badge bg-green"><%= @item.used %></span></a></li>
+            <li><a>Status <span class="pull-right badge bg-red"><%= @item.status %></span></a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- /.widget-user -->
+    </div>
+
+  </div>
+  <!-- /.row -->
+
+</section>

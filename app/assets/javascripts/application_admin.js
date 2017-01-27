@@ -27,4 +27,6 @@
 //= require app.min
 //= require dashboard
 //= require demo
+//= require plugins/datatable/jquery.dataTables.min
+//= require plugins/datatable/dataTables.bootstrap.min
 //= require_tree .
