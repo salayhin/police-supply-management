@@ -20,6 +20,8 @@
  *= require plugins/daterangepicker/daterangepicker
  *= require plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min
  *= require style
+ *= require font-awesome/css/font-awesome.min
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */
