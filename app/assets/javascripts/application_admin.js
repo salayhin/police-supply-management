@@ -29,4 +29,5 @@
 //= require demo
 //= require plugins/datatable/jquery.dataTables.min
 //= require plugins/datatable/dataTables.bootstrap.min
+//= require cocoon
 //= require_tree .

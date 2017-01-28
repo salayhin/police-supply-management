@@ -1,0 +1,52 @@
+<%= form_for @requisition, :html => {class: 'form-horizontal requisition'} do |f| %>
+    <div class="box-body resize">
+      <% if @requisition.errors.any? %>
+          <div id="error_expl" class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= pluralize(@requisition.errors.count, 'error') %> prohibited this user from
+                being
+                saved:</h3>
+            </div>
+            <div class="panel-body">
+              <ul>
+                <% @requisition.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+      <% end %>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Station</label>
+        <%#= f.label :station, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.select(:station_id, options_for_select(Station::STATIONS.collect{|st| [st[1], st[0]]},
+                                                       :selected => f.object.station_id), :class => 'form-control', :include_blank => 'Select Station') %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10"><%= f.text_area :description, :class => 'form-control', :id => 'item_des', :placeholder => 'About this item', rows: 3 %></div>
+      </div>
+
+      <div id="item-requisitions">
+        <%= f.fields_for :item_requisitions do |ir| %>
+            <%= render 'item_requisition_fields', :f => ir %>
+        <% end %>
+        <div class="links">
+          <%= link_to_add_association 'Add item', f, :item_requisitions, :class => 'col-sm-offset-2 btn btn-primary btn-xs' %>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="box-footer">
+      <%= f.submit nil, :class => 'btn btn-sm btn-success' %>
+      <%= link_to t('.cancel', :default => t('helpers.links.cancel')),
+                  requisitions_path, :class => 'btn btn-sm btn-default' %>
+    </div>
+
+<% end %>

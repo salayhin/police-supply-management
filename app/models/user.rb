@@ -9,6 +9,7 @@ class User < ApplicationRecord
   #           :uniqueness => true
 
   has_one :api_key
+  has_many :requisitions
 
   protected
   def password_required?

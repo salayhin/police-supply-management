@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :requisitions
   devise_for :users, path_names: { sign_up: 'register' },
              controllers: {  sessions:            'sessions',
                              registrations:       'registrations',

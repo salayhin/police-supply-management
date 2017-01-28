@@ -1,0 +1,85 @@
+<%- model_class = Requisition -%>
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">
+            <%= t '.title', :default => model_class.model_name.human.pluralize.titleize %>
+            <%= link_to 'New Requisition',
+                        new_requisition_path,
+                        :class => 'btn btn-sm btn-success' %>
+          </h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th><%= model_class.human_attribute_name(:id) %></th>
+              <th><%= model_class.human_attribute_name(:name) %></th>
+              <th><%= model_class.human_attribute_name(:description) %></th>
+              <th>Item Details</th>
+              <th><%= model_class.human_attribute_name(:status) %></th>
+              <th><%= t '.actions', :default => t('helpers.actions') %></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% if @requisitions.count > 0 %>
+                <% @requisitions.each do |requisition| %>
+                    <tr>
+                      <td><%= link_to requisition.id, requisition_path(requisition) %></td>
+                      <td><%= requisition.name %></td>
+                      <td><%= truncate(requisition.description, length: 100) if requisition.description.present? %></td>
+                      <td>
+                        <ul class="list-unstyled">
+                          <% requisition.items.each do |item| %>
+                            <li><%= item.name %>: <%= item.quantity %></li>
+                          <% end %>
+                        </ul>
+                      </td>
+                      <td><%= requisition.status %></td>
+                      <td>
+                        <%= link_to t('.show', :default => t('helpers.links.show')),
+                                    requisition_path(requisition), :class => 'btn btn-sm btn-default' %>
+                        <%= link_to t('.edit', :default => t('helpers.links.edit')),
+                                    edit_requisition_path(requisition), :class => 'btn btn-sm btn-warning' %>
+                        <%= link_to t('.destroy', :default => t('helpers.links.destroy')),
+                                    requisition_path(requisition),
+                                    :method => :delete,
+                                    :data => {:confirm => t('.confirm', :default => t('helpers.links.confirm', :default => 'Are you sure?'))},
+                                    :class => 'btn btn-sm btn-danger' %>
+                      </td>
+                    </tr>
+                <% end %>
+            <% else %>
+                <tr>
+                  <td colspan="7" class="text-center">
+                    No requisition have been made!
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+
+          </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  $(document).ready(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+
+  })
+</script>

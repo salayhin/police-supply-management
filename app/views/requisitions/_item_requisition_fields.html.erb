@@ -1,0 +1,20 @@
+<div class="nested-fields item-reqisition-fields">
+  <!--<div class="row">-->
+  <div class="form-group field">
+    <label class="col-sm-4 control-label" for="default-select">select Item</label>
+    <div class="col-sm-8">
+      <%= f.select :item_id, options_for_select(all_items.collect{|item| [item.name, item.id]}, :selected => f.object.item_id) %>
+    </div>
+  </div>
+  <!--</div>-->
+  <!--<div class="row">-->
+  <div class="form-group field">
+    <label class="col-sm-4 control-label">Quantity</label>
+    <div class="col-sm-8">
+      <%= f.text_field :quantity, :class => 'form-control', :id => 'item_quantity', :placeholder => 'Enter Quantity' %>
+    </div>
+  </div>
+  <!--</div>-->
+
+  <div class="col-sm-offset-6 col-sm-4"><%= link_to_remove_association "remove item", f, :class => 'pull-right btn btn-danger btn-xs' %></div>
+</div>
