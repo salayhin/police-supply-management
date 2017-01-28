@@ -71,6 +71,6 @@ class RequisitionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def requisition_params
-      params.fetch(:requisition, {})
+      params.require(:requisition).permit(:station_id, :description, item_requisitions_attributes: [:id, :item_id, :quantity, :_destroy])
     end
 end

@@ -29,12 +29,12 @@
                 <% @requisitions.each do |requisition| %>
                     <tr>
                       <td><%= link_to requisition.id, requisition_path(requisition) %></td>
-                      <td><%= requisition.name %></td>
+                      <td><%= get_station_name(requisition.station_id) %></td>
                       <td><%= truncate(requisition.description, length: 100) if requisition.description.present? %></td>
                       <td>
                         <ul class="list-unstyled">
-                          <% requisition.items.each do |item| %>
-                            <li><%= item.name %>: <%= item.quantity %></li>
+                          <% requisition.item_requisitions.each do |itemRequ| %>
+                            <li><%= itemRequ.item.name %>: <%= itemRequ.quantity %></li>
                           <% end %>
                         </ul>
                       </td>

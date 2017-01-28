@@ -1,4 +1,53 @@
-<p id="notice"><%= notice %></p>
+<section class="content-header">
+  <h2>
+    Requisition
+    <small>Detail</small>
+  </h2>
+  <ol class="breadcrumb">
+    <li><a href="<%= admin_dashboard_path %>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li class="active"><a href="<%= requisitions_path %>"><i class="fa fa-file-pdf-o"></i> Requisitions</a></li>
+    <li><a href="<%= edit_requisition_path(@requisition) %>"><i class="fa fa-pencil"></i> Edit</a></li>
+  </ol>
+</section>
 
-<%= link_to 'Edit', edit_requisition_path(@requisition) %> |
-<%= link_to 'Back', requisitions_path %>
+<section class="content">
+
+  <div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-aqua"><i class="fa fa-opencart"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text"><%= get_station_name(@requisition.station_id) %></span>
+          <span class="info-box-number">Items: <%= @requisition.items.count %></span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+
+  </div>
+
+  <h2 class="page-header">Requisition: <i>Items</i></h2>
+
+  <div class="row">
+    <% @requisition.item_requisitions.each do |itemRequ| %>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-aqua">
+              <%= image_tag itemRequ.item.image.present? ? itemRequ.item.image_url(:thumb) : 'http://placehold.it/50x50', alt: "#{itemRequ.item.name}" %>
+            </span>
+
+            <div class="info-box-content">
+              <span class="info-box-text"><%= itemRequ.item.name %></span>
+              <span class="info-box-number">Quantity: <%= itemRequ.quantity %></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+     <% end %>
+  </div>
+  <!-- /.row -->
+
+</section>
