@@ -17,10 +17,10 @@
 //= require plugins/morris/morris.min
 //= require plugins/sparkline/jquery.sparkline.min
 
+//= require jquery-ui.min
+//= require bootstrap.min
 //= require plugins/knob/jquery.knob.js
 //= require moment.min
-//= require plugins/daterangepicker/daterangepicker
-//= require plugins/datepicker/bootstrap-datepicker
 //= require plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min
 //= require plugins/slimScroll/jquery.slimscroll.min
 //= require plugins/fastclick/fastclick
@@ -30,4 +30,5 @@
 //= require plugins/datatable/jquery.dataTables.min
 //= require plugins/datatable/dataTables.bootstrap.min
 //= require cocoon
-//= require_tree .
+//= require plugins/morris/morris.min.js
+//= require plugins/randomColor.js

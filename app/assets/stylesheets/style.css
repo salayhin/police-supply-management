@@ -33,3 +33,7 @@
     height: 400px;
     width: 100%;
 }
+#station_requisitions_map{
+    width: 100%;
+    height: 750px;
+}
