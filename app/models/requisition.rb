@@ -6,7 +6,7 @@ class Requisition < ApplicationRecord
 
   validates_presence_of :title, :station_id
 
-  attr_accessor :item_requisitions_attributes
+  # attr_accessor :item_requisitions_attributes
 
   accepts_nested_attributes_for :items
   accepts_nested_attributes_for :item_requisitions, :reject_if => proc { |attributes| attributes['quantity'].blank? }, :allow_destroy => true
