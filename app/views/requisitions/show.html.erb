@@ -13,41 +13,58 @@
 <section class="content">
 
   <div class="row">
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-        <span class="info-box-icon bg-aqua"><i class="fa fa-opencart"></i></span>
-
-        <div class="info-box-content">
-          <span class="info-box-text"><%= get_station_name(@requisition.station_id) %></span>
-          <span class="info-box-number">Items: <%= @requisition.items.count %></span>
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">
+            <%= @requisition.title %>
+          </h3>
         </div>
-        <!-- /.info-box-content -->
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>Title</th>
+              <th>Items</th>
+              <th width="40%">Description</th>
+              <th>Status</th>
+              <th><%= t '.actions', :default => t('helpers.actions') %></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><%= @requisition.title %></td>
+              <td>
+                <ul class="list-unstyled">
+                  <% @requisition.item_requisitions.each do |itemRequ| %>
+                      <li><%= itemRequ.item.name %>: <%= itemRequ.quantity %></li>
+                  <% end %>
+                </ul>
+              </td>
+              <td><%= @requisition.description if @requisition.description.present? %></td>
+              <td><%= @requisition.status %></td>
+              <td>
+                <%= link_to t('.edit', :default => t('helpers.links.edit')),
+                            edit_requisition_path(@requisition), :class => 'btn btn-sm btn-warning' %>
+                <%= link_to t('.destroy', :default => t('helpers.links.destroy')),
+                            requisition_path(@requisition),
+                            :method => :delete,
+                            :data => {:confirm => t('.confirm', :default => t('helpers.links.confirm', :default => 'Are you sure?'))},
+                            :class => 'btn btn-sm btn-danger' %>
+              </td>
+            </tr>
+
+            </tbody>
+
+          </table>
+        </div>
+        <!-- /.box-body -->
       </div>
-      <!-- /.info-box -->
     </div>
-
   </div>
 
-  <h2 class="page-header">Requisition: <i>Items</i></h2>
 
-  <div class="row">
-    <% @requisition.item_requisitions.each do |itemRequ| %>
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-aqua">
-              <%= image_tag itemRequ.item.image.present? ? itemRequ.item.image_url(:thumb) : 'http://placehold.it/50x50', alt: "#{itemRequ.item.name}" %>
-            </span>
-
-            <div class="info-box-content">
-              <span class="info-box-text"><%= itemRequ.item.name %></span>
-              <span class="info-box-number">Quantity: <%= itemRequ.quantity %></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-     <% end %>
-  </div>
   <!-- /.row -->
 
 </section>
